@@ -13,6 +13,9 @@ abstract class IncrementReducerAction
   int get value;
   IncrementReducerAction._();
 
+  factory IncrementReducerAction.create({required int value}) =>
+      IncrementReducerAction((update) => update..value = value);
+
   static void _initializeBuilder(IncrementReducerActionBuilder builder) {}
 
   factory IncrementReducerAction(

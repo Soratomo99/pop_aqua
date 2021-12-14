@@ -13,6 +13,9 @@ abstract class StatusReducerAction
   String get newStatus;
   StatusReducerAction._();
 
+  factory StatusReducerAction.create({required String status}) =>
+      StatusReducerAction((update) => update..newStatus = status);
+
   static void _initializeBuilder(StatusReducerActionBuilder builder) {}
 
   factory StatusReducerAction(

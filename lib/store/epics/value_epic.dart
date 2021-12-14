@@ -22,21 +22,21 @@ class AppMiddleware implements EpicClass<AppState> {
     await for (final action in actions) {
       if (action is IncrementMiddlewareAction) {
         try {
-          yield StatusReducerAction((update) => update.newStatus = "isLoading");
+          yield StatusReducerAction.create(status: "isLoading");
+          final newValue = action.value + 1;
           await Future.delayed(
             const Duration(milliseconds: 500),
           );
-          final newValue = action.value + 1;
-          yield IncrementReducerAction((update) => update.value = newValue);
+          yield IncrementReducerAction.create(value: newValue);
         } catch (e, stackTrack) {
-          yield StatusReducerAction((update) => update.newStatus = "error");
+          yield StatusReducerAction.create(status: "error");
           log(
             "Error when get a new value",
             error: e,
             stackTrace: stackTrack,
           );
         } finally {
-          yield StatusReducerAction((update) => update.newStatus = "idle");
+          yield StatusReducerAction.create(status: "idle");
         }
       }
     }

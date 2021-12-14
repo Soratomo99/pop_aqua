@@ -13,6 +13,9 @@ abstract class IncrementMiddlewareAction
   int get value;
   IncrementMiddlewareAction._();
 
+  factory IncrementMiddlewareAction.create({required int value}) =>
+      IncrementMiddlewareAction((update) => update..value = value);
+
   static void _initializeBuilder(IncrementMiddlewareActionBuilder builder) {}
 
   factory IncrementMiddlewareAction(
