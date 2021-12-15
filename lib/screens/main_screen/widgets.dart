@@ -16,10 +16,12 @@ class CountWidget extends StatelessWidget {
         distinct: true,
         converter: (Store<AppState> store) => AppStateViewModel.create(store),
         onInitialBuild: (viewModel) {},
+        onDidChange: (viewModel, viewModelClone) {
+          print(viewModel?.value);
+        },
         builder: (context, viewModel) {
-          final value = viewModel.value;
           return Text(
-            value.toString(),
+            viewModel.value.toString(),
             style: const TextStyle(
               color: Colors.white,
               fontSize: 50,
