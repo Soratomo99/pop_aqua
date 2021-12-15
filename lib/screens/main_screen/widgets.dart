@@ -42,13 +42,14 @@ class AquaImage extends StatelessWidget {
         converter: (Store<AppState> store) => AppStateViewModel.create(store),
         onInitialBuild: (viewModel) {},
         builder: (context, viewModel) {
-          final value = viewModel.value;
+          print(viewModel.status);
           if (viewModel.status == "idle") {
+            final value = viewModel.value;
+            final action = IncrementMiddlewareAction.create(value: value);
+            print(value);
             return GestureDetector(
               onTap: () {
-                // action;
-                viewModel.dispatch(
-                    action: IncrementMiddlewareAction.create(value: value));
+                viewModel.dispatch(action: action);
               },
               child: Image.asset(
                 "assets/images/aqua1.png",

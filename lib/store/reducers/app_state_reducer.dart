@@ -13,6 +13,5 @@ AppState reducerChangeStatus(AppState state, StatusReducerAction action) {
 }
 
 AppState reducerChangeValue(AppState state, IncrementReducerAction action) {
-  print(action.value);
   return state.rebuild((p0) => p0..value = action.value);
 }
